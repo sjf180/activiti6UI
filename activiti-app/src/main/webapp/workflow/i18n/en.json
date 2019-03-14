@@ -20,7 +20,7 @@
         },
         "NAVIGATION": {
             "TASKS": "任务",
-            "PROCESSES": "过程",
+            "PROCESSES": "流程",
             "DESIGN": "设计",
             "CREATE": "创建",
             "LOGIN": "登录"
@@ -93,7 +93,7 @@
             "TEXT": "过滤",
             "TEXT-PLACEHOLDER": "按任务名称搜索",
             "TEXT-SUMMARY": "过滤: {{text}}",
-            "PROCESS-DEFINITION": "过程定义",
+            "PROCESS-DEFINITION": "流程定义",
             "PROCESS-DEFINITION-PLACEHOLDER": "选择流程定义......",
             "STATE": "状态",
             "STATE-OPEN": "打开",
@@ -157,7 +157,7 @@
             "DESCRIPTION": "描述",
             "ASSIGNEE": "处理人",
             "DUE": "到期",
-            "PROCESS-INSTANCE": "过程的一部分",
+            "PROCESS-INSTANCE": "流程的一部分",
             "ENDED": "结束",
             "DURATION": "持续时间"
         },
@@ -214,7 +214,7 @@
             "ENDED-DESC": "后到前",
             "ENDED-ASC": "前到后",
             "STATE-SUMMARY": "显示{{state.title | translate}}流程",
-            "STATE": "过程状态",
+            "STATE": "流程状态",
             "STATE-RUNNING": "运行中",
             "STATE-COMPLETED": "结束",
             "STATE-ALL": "全部"

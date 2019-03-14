@@ -5,7 +5,7 @@
     "GENERAL" : {
         "MAIN-TITLE": "工作流 - Kickstart",
         "NAVIGATION" : {
-            "PROCESSES": "过程",
+            "PROCESSES": "流程",
             "FORMS": "表单",
             "DECISION-TABLES": "决策表",
             "APPS": "应用程序"
@@ -840,7 +840,7 @@
             "REST": "REST服务"
         },
         "OUTCOMES": {
-            "DESCRIPTION": "您可以为此任务定义多个输出。在完成任务时，用户选择一个可用结果，这些输出可用于例如过程中的进一步条件。",
+            "DESCRIPTION": "您可以为此任务定义多个输出。在完成任务时，用户选择一个可用结果，这些输出可用于例如流程中的进一步条件。",
             "NO-OUTCOMES-OPTION": "不要使用自定义输出，只显示'完成'按钮。",
             "OUTCOMES-OPTION": "使用此表单的自定义输出。",
             "POSSIBLE-OUTCOMES": "可能的输出",
@@ -851,7 +851,7 @@
         "VALIDATOR-POPUP": {
             "DESCRIPTION": "描述",
             "WARNING": "警告",
-            "VALIDATOR-SET": "验证器集"
+            "VALIDATOR-SET": "验证器设置"
         },
         "GROUP-RESTRICTION": {
             "LABEL": "受限于群组"
@@ -1090,7 +1090,7 @@
                 "DESCRIPTION": "向Camel发送消息的任务"
             },
             "COLLAPSED-SUBPROCESS": {
-                "TITLE": "折叠的子过程",
+                "TITLE": "折叠的子流程",
                 "DESCRIPTION": "提供对可重用子流程定义的引用"
             },
             "DATA-ASSOCIATION": {
@@ -1381,7 +1381,7 @@
             },
             "PROCESS-INITIATOR": {
                 "TITLE": "流程发起人",
-                "DESCRIPTION": "过程的发起者。"
+                "DESCRIPTION": "流程的发起者。"
             },
             "PROCESS-NAMESPACE": {
                 "TITLE": "目标命名空间",
@@ -1453,7 +1453,7 @@
             },
             "SIGNAL-DEFINITIONS": {
                 "TITLE": "信号定义",
-                "DESCRIPTION": "在过程中用于信号捕获和抛出事件的信号的定义。"
+                "DESCRIPTION": "在流程中用于信号捕获和抛出事件的信号的定义。"
             },
            "MESSAGE-DEFINITIONS": {
                 "TITLE": "消息定义",
@@ -1754,7 +1754,7 @@
     "PROPERTY.MESSAGEDEFINITIONS.NAME" : "名称",
 
     "PROPERTY.SEQUENCEFLOW.ORDER.EMPTY" : "没有确定序列流顺序",
-    "PROPERTY.SEQUENCEFLOW.ORDER.NOT.EMPTY" : "顺序流顺序集",
+    "PROPERTY.SEQUENCEFLOW.ORDER.NOT.EMPTY" : "顺序流顺序设置",
     "PROPERTY.SEQUENCEFLOW.ORDER.NO.OUTGOING.SEQUENCEFLOW.FOUND" : "没有找到传出的序列流。",
     "PROPERTY.SEQUENCEFLOW.ORDER.DESCRIPTION" : "设置需要评估序列流的顺序：",
     "PROPERTY.SEQUENCEFLOW.ORDER.SEQUENCEFLOW.VALUE" : "顺序流向{{targetType}} {{targetTitle}}",
