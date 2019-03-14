@@ -1,0 +1,192 @@
+{
+   "IDM": {
+      "GENERAL" : {
+        "MAIN-TITLE": "Activiti - 身份管理",
+        "NAVIGATION": {
+            "PROFILE": "个人",
+            "USER-MGMT": "用户",
+            "GROUP-MGMT": "组"
+        },
+        "ACTION": {
+          "CANCEL": "取消",
+          "CREATE": "创建",
+          "SAVE": "保存",
+          "CLOSE": "关闭",
+          "LOGOUT": "注销",
+          "ABOUT": "关于Activiti"
+        },
+        "ERROR": {
+            "GENERIC": "抱歉，有错误发生...",
+            "UNKNOWN": "抱歉，在执行请求的操作时发生错误。",
+            "BAD_REQUEST": "错误在执行请求的操作出错",
+            "NOT_FOUND": "您要访问的资源不存在",
+            "UNAUTHORIZED": "您应该就可以登录以执行请求的操作。",
+            "FORBIDDEN": "您是不是允许执行所请求的操作",
+            "INTERNAL_SERVER_ERROR": "抱歉，在执行请求的操作中发生了意外的错误。"
+        }
+      },
+      "USER-MGMT": {
+        "TITLE": "匹配用户",
+         "CREATE-USER": "创建用户",
+         "NAME-SEARCH": "按名称搜索",
+         "COMPANY": "公司",
+         "STATUS": "状态",
+         "ACCOUNT": "账户类型",
+         "ACTIONS": "选择一个操作",
+         "CHANGE-STATUS": "更改状态",
+         "CHANGE-ACCOUNT-TYPE": "更改帐户类型",
+         "CHANGE-PASSWORD": "更改密码",
+         "EDIT-USER": "更改范围",
+         "DELETE-USERS": "删除",
+         "TOTAL-USERS": "总共",
+         "INACTIVE-USERS": "无效",
+         "ENTERPRISE-USERS": "企业",
+         "ACTIVE-USERS": "活动",
+         "DELETED-USERS": "已删除",
+         "ORDER-BY": "排序",
+         "SHOW-NEXT": "下一个",
+         "SHOW-PREVIOUS": "上一个",
+         "NO-MATCHING-USERS": "未找到匹配用户",
+         "MATCHING-USERS": "发现 {{total | number}} 匹配的用户， 显示 {{start + 1}} 到 {{start + size}}",
+         "ID": "ID",
+         "EMAIL": "电子邮件",
+         "NAME": "姓名",
+         "CREATED": "已创建",
+         "TYPE": "类型",
+         "EXTERNAL-ID": "外部ID",
+         "LAST-SYNC-TIME": "最近更新",
+         "FILTERS": {
+             "STATUS-ANY": "任何状态",
+             "STATUS-ACTIVE": "活动",
+             "STATUS-INACTIVE": "无效",
+             "STATUS-PENDING": "待定",
+             "STATUS-DELETED": "已删除",
+             "TYPE-ANY": "任何类型",
+             "SORT-DATE-NEWEST": "创建日期，最新的",
+             "SORT-DATE-OLDEST": "创建日期，最早的",
+             "SORT-EMAIL-A": "电子邮件, A-Z",
+             "SORT-EMAIL-Z": "电子邮件, Z-A",
+             "SORT-ID-A": "用户ID, A-Z",
+             "SORT-ID-Z": "用户ID, Z-A"
+         },
+         "POPUP": {
+             "CREATE-TITLE": "创建用户",
+             "EDIT-TITLE": "编辑用户信息",
+             "CREATE-ID": "用户ID",
+             "CREATE-EMAIL": "电子邮件",
+             "CREATE-INVALID-EMAIL": "无效",
+             "CREATE-PASSWORD": "密码",
+             "CREATE-FIRSTNAME": "姓",
+             "CREATE-LASTNAME": "名",
+             "CREATE-TENANT": "租户",
+             "CREATE-COMPANY": "公司",
+             "CREATE-STATUS": "状态",
+             "CREATE-TYPE": "类型",
+             "BULK-UPDATE-TITLE": "批量更新用户",
+             "BULK-UPDATE-NEW-STATUS": "新状态：",
+             "BULK-UPDATE-NEW-TYPE": "新的帐户类型：",
+             "BULK-UPDATE-EMAIL-NOTIFICATIONS": "发送电子邮件通知的状态变化",
+             "BULK-UPDATE-STATUS-USERS": "您将要更新{{length}}个用户的状态：",
+             "BULK-UPDATE-TYPE-USERS": "您将要更新{{length}}个用户帐户类型：",
+             "BULK-UPDATE-CANCEL": "取消并关闭",
+             "BULK-UPDATE-CONFIRM": "更新用户",
+             "BULK-UPDATE-PASSWORD-TITLE": "更改密码",
+             "BULK-UPDATE-PASSWORD": "密码",
+             "BULK-UPDATE-PASSWORD-REPEAT": "重复密码",
+             "BULK-UPDATE-PASSWORD-CONFIRM": "更改"
+         }
+      },
+      "FUNCTIONAL-GROUP-MGMT": {
+        "CREATE": "创建群组",
+        "NO-GROUPS": "没有找到群组",
+        "NO-SELECTION": "选择从左边的列表中选择一个群",
+        "SYNC-DETAILS": "同步详细信息",
+        "EXTERNAL-ID": "外部ID：",
+        "LAST-SYNC-TIME": "最后更新：",
+        "MEMBERS": "组员",
+        "SUBGROUPS": "子群组",
+        "NO-MEMBERS": "未找到用户",
+        "ADD-USER": "添加用户",
+        "ADD-SUBGROUP": "添加子群组",
+        "NO-SUBGROUPS": "没有找到子群组",
+        "USER-ADDED": "用户已添加到群组",
+        "INACTIVE": "停用",
+        "INACTIVE-DESCRIPTION": "此组已停用。用户仍可以完成当前为该组分配的任务，但新的流程定义不能再使用该组。",
+        "ADD-POPOVER-TITLE": "选择用户",
+            "POPUP": {
+                "CREATE-TITLE": "创建群组",
+                "CREATE-ID": "组ID",
+                "CREATE-NAME": "名称",
+                "DELETE-TITLE": "删除组",
+                "DELETE-DESCRIPTION": "您确定要删除此群组吗？",
+                "DELETE-CONFIRM": "确认",
+                "DEACTIVATE-TITLE": "停用此群组",
+                "DEACTIVATE-DESCRIPTION": "您确定要删除此组吗？这也将删除所有子组。请注意，首先将停用组，以便可以正确完成进程任务。单击删除按钮一秒钟时间将完全删除该组。",
+                "DELETE-MEMBER-TITLE": "删除群组成员",
+                "DELETE-MEMBER-DESCRIPTION": "您确定要从群组中删除此用户吗？",
+                "DELETE-CONFIRM": "确认",
+                "ADD-MEMBER-TITLE": "添加用户",
+                "ADD-MEMBER-NO-USERS": "没有找到用户",
+                "ADD-MEMBER-CONFIRM": "添加({{selectedUsers.length}})",
+                "ACTIVATE-TITLE": "激活组",
+                "ACTIVATE-DESCRIPTION": "再次激活此组？这意味着该组将再次进行任务分配。请注意，默认情况下不会激活组的子组。",
+                "ACTIVATE-CONFIRM": "激活",
+                "EDIT-TITLE": "编辑小组"
+            }
+        },
+      "PROFILE-MGMT": {
+         "CREATED": "自注册以来",
+         "CHANGE-PASSWORD": "更改密码",
+         "DETAILS": "详情",
+         "DETAILS-DESCRIPTION": "点击下面的任何字段进行更改",
+         "FIRST-NAME": "姓",
+         "NOTHING-SET": "未设定",
+         "LAST-NAME": "名",
+         "EMAIL": "电子邮件",
+         "COMPANY": "公司",
+         "GROUPS": "您的群组",
+         "POPUP": {
+            "UPLOAD-PICTURE-TITLE": "改变图片",
+            "UPLOAD-PICTURE-DESCRIPTION": "请从您的计算机中选择一张图像，或将其放在下面的区域中。",
+            "UPLOAD-PICTURE-CANCEL-UPLOAD": "取消上传",
+            "UPLOAD-PICTURE-DROPZONE": "在此处删除徽标图像文件",
+            "UPLOAD-PICTURE-NO-DROP": "您的浏览器不支持丢弃",
+            "UPLOAD-PICTURE-ERROR": "错误",
+            "CHANGE-PASSWORD-TITLE": "更改密码",
+            "CHANGE-PASSWORD-ORIGINAL": "原密码",
+            "CHANGE-PASSWORD-NEW-PASSWORD": "新密码",
+            "CHANGE-PASSWORD-NEW-PASSWORD2": "重复新密码",
+            "CHANGE-PASSWORD-CONFIRM": "确认",
+            "CHANGE-PASSWORD-NOT-MATCHING": "密码不匹配",
+            "CHANGE-PASSWORD-INVALID": "密码无效"
+         }
+      },
+      "USERS": {
+        "TITLE": "用户管理",
+        "ACTION": {
+          "CREATE": "创建用户"
+        }
+      }
+    },
+    "GENERAL": {
+        "ACTION": {
+            "CLOSE": "关闭"
+        },
+        "MESSAGE": {
+            "SELECT-PEOPLE-HELP": "使用&uparrow;和&downarrow;选择并按enter确认",
+            "SELECT-GROUP-HELP": "使用&uparrow;和&downarrow;选择并按Enter确认",
+            "SELECT-GROUP-SEARCH-PLACEHOLDER": "搜索组",
+            "SELECT-GROUP-NO-MATCHING-RESULTS": "使用上面的搜索框查找组。"
+        },
+        "TITLE": {
+            "MATCHING-PEOPLE": "匹配人",
+            "SELECT-GROUP": "选择组",
+            "MATCHING-GROUPS": "匹配组"
+        }
+    },
+    "INVOLVE-PEOPLE": {
+        "ACTION-SELECT": "选择",
+        "SEARCH-PLACEHOLDER": "按名称搜索",
+        "NO-MATCHING-RESULTS": "使用上面的搜索框查找用户"
+    }
+}
