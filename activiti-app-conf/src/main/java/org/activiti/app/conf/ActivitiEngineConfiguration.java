@@ -59,28 +59,16 @@ public class ActivitiEngineConfiguration {
     @Inject
     private Environment environment;
     
-    @Bean(name="processEngine")
-    public ProcessEngineFactoryBean processEngineFactoryBean() {
-        ProcessEngineFactoryBean factoryBean = new ProcessEngineFactoryBean();
-        factoryBean.setProcessEngineConfiguration(processEngineConfiguration());
-        return factoryBean;
-    }
-    
-    public ProcessEngine processEngine() {
-        // Safe to call the getObject() on the @Bean annotated processEngineFactoryBean(), will be
-        // the fully initialized object instanced from the factory and will NOT be created more than once
-        try {
-            return processEngineFactoryBean().getObject();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+
     
     @Bean(name="processEngineConfiguration")
     public ProcessEngineConfigurationImpl processEngineConfiguration() {
     	SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
+        processEngineConfiguration.setDatabaseType(environment.getProperty("database.type"));
+      //  processEngineConfiguration.setDatabaseSchema(environment.getProperty("datasource.username"));
+        processEngineConfiguration.setDatabaseCatalog(environment.getProperty("datasource.username"));
     	processEngineConfiguration.setDataSource(dataSource);
-    	processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+    	processEngineConfiguration.setDatabaseSchemaUpdate(environment.getProperty("database.schema.update"));
     	processEngineConfiguration.setTransactionManager(transactionManager);
     	processEngineConfiguration.setAsyncExecutorActivate(true);
     	processEngineConfiguration.setAsyncExecutor(asyncExecutor());
@@ -117,18 +105,27 @@ public class ActivitiEngineConfiguration {
     	processEngineConfiguration.setPreBpmnParseHandlers(preParseHandlers);
     	
     	FormEngineConfiguration formEngineConfiguration = new FormEngineConfiguration();
+    	formEngineConfiguration.setDatabaseType(environment.getProperty("database.type"));
+       // formEngineConfiguration.setDatabaseSchema(environment.getProperty("datasource.username"));
+        formEngineConfiguration.setDatabaseCatalog(environment.getProperty("datasource.username"));
     	formEngineConfiguration.setDataSource(dataSource);
+        formEngineConfiguration.setDatabaseSchemaUpdate(environment.getProperty("database.schema.update"));
     	
     	FormEngineConfigurator formEngineConfigurator = new FormEngineConfigurator();
     	formEngineConfigurator.setFormEngineConfiguration(formEngineConfiguration);
     	processEngineConfiguration.addConfigurator(formEngineConfigurator);
     	
     	DmnEngineConfiguration dmnEngineConfiguration = new DmnEngineConfiguration();
+        dmnEngineConfiguration.setDatabaseType(environment.getProperty("database.type"));
+     //   dmnEngineConfiguration.setDatabaseSchema(environment.getProperty("datasource.username"));
+        dmnEngineConfiguration.setDatabaseCatalog(environment.getProperty("datasource.username"));
     	dmnEngineConfiguration.setDataSource(dataSource);
+        dmnEngineConfiguration.setDatabaseSchemaUpdate(environment.getProperty("database.schema.update"));
       
       DmnEngineConfigurator dmnEngineConfigurator = new DmnEngineConfigurator();
       dmnEngineConfigurator.setDmnEngineConfiguration(dmnEngineConfiguration);
       processEngineConfiguration.addConfigurator(dmnEngineConfigurator);
+
     	
     	return processEngineConfiguration;
     }
@@ -139,6 +136,25 @@ public class ActivitiEngineConfiguration {
         asyncExecutor.setDefaultAsyncJobAcquireWaitTimeInMillis(5000);
         asyncExecutor.setDefaultTimerJobAcquireWaitTimeInMillis(5000);
         return asyncExecutor;
+    }
+
+
+
+    @Bean(name="processEngine")
+    public ProcessEngineFactoryBean processEngineFactoryBean() {
+        ProcessEngineFactoryBean factoryBean = new ProcessEngineFactoryBean();
+        factoryBean.setProcessEngineConfiguration(processEngineConfiguration());
+        return factoryBean;
+    }
+
+    public ProcessEngine processEngine() {
+        // Safe to call the getObject() on the @Bean annotated processEngineFactoryBean(), will be
+        // the fully initialized object instanced from the factory and will NOT be created more than once
+        try {
+            return processEngineFactoryBean().getObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     @Bean(name="clock")

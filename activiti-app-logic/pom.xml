@@ -251,8 +251,14 @@
         	<groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-dmn-engine</artifactId>
+            <version>6.0.0</version>
+            <scope>compile</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<!-- BUILD -->
 	<build>

@@ -12,14 +12,8 @@
  */
 package org.activiti.app.conf;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import liquibase.Liquibase;
-import liquibase.database.Database;
-import liquibase.database.DatabaseConnection;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import org.activiti.engine.ActivitiException;
+
+import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.ejb.HibernatePersistence;
 import org.slf4j.Logger;
@@ -43,7 +37,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
@@ -124,33 +117,69 @@ public class DatabaseConfiguration {
         log.info("Min pool size | Max pool size | acquire increment : " + minPoolSize + " | " + maxPoolSize + " | " + acquireIncrement);
       }
 
-      ComboPooledDataSource ds = new ComboPooledDataSource();
-      try {
-        ds.setDriverClass(dataSourceDriver);
-      } catch (PropertyVetoException e) {
-        log.error("Could not set Jdbc Driver class", e);
-        return null;
-      }
+      DruidDataSource ds = new DruidDataSource();
+
+        ds.setDriverClassName(dataSourceDriver);
+
 
       // Connection settings
-      ds.setJdbcUrl(dataSourceUrl);
-      ds.setUser(dataSourceUsername);
+      ds.setUrl(dataSourceUrl);
+      ds.setUsername(dataSourceUsername);
       ds.setPassword(dataSourcePassword);
+      ds.setInitialSize(minPoolSize);
+      ds.setMaxActive(maxPoolSize);
 
-      // Pool config: see http://www.mchange.com/projects/c3p0/#configuration
-      ds.setMinPoolSize(minPoolSize);
-      ds.setMaxPoolSize(maxPoolSize);
-      ds.setAcquireIncrement(acquireIncrement);
       if (preferredTestQuery != null) {
-        ds.setPreferredTestQuery(preferredTestQuery);
+        ds.setValidationQuery(preferredTestQuery);
       }
-      ds.setTestConnectionOnCheckin(testConnectionOnCheckin);
-      ds.setTestConnectionOnCheckout(testConnectionOnCheckOut);
-      ds.setMaxIdleTimeExcessConnections(maxIdleTimeExcessConnections);
-      ds.setMaxIdleTime(maxIdleTime);
-
       return ds;
     }
+  }
+
+
+  @Bean(name = "liquibaseDataSource")
+  public DataSource liquibaseDataSource() {
+    log.info("Configuring Liquibase Datasource");
+
+
+      String dataSourceDriver = "org.h2.Driver";
+      String dataSourceUrl = "jdbc:h2:mem:activiti;DB_CLOSE_DELAY=-1";
+
+      String dataSourceUsername = "sa";
+      String dataSourcePassword = "";
+
+      Integer minPoolSize = env.getProperty("datasource.min-pool-size", Integer.class);
+      if (minPoolSize == null) {
+        minPoolSize = 10;
+      }
+
+      Integer maxPoolSize = env.getProperty("datasource.max-pool-size", Integer.class);
+      if (maxPoolSize == null) {
+        maxPoolSize = 100;
+      }
+
+
+
+      String preferredTestQuery = env.getProperty("datasource.preferred-test-query");
+
+
+      DruidDataSource ds = new DruidDataSource();
+
+      ds.setDriverClassName(dataSourceDriver);
+
+
+      // Connection settings
+      ds.setUrl(dataSourceUrl);
+      ds.setUsername(dataSourceUsername);
+      ds.setPassword(dataSourcePassword);
+      ds.setInitialSize(minPoolSize);
+      ds.setMaxActive(maxPoolSize);
+
+      if (preferredTestQuery != null) {
+        ds.setValidationQuery(preferredTestQuery);
+      }
+      return ds;
+
   }
 
   @Bean(name = "entityManagerFactory")
@@ -193,16 +222,16 @@ public class DatabaseConfiguration {
     return jpaTransactionManager;
   }
 
-  @Bean(name = "liquibase")
+ /* @Bean(name = "liquibase")
   public Liquibase liquibase() {
     log.info("Configuring Liquibase");
     
     try {
-      DatabaseConnection connection = new JdbcConnection(dataSource().getConnection());
+      DatabaseConnection connection = new JdbcConnection(liquibaseDataSource().getConnection());
       Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
       database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX+database.getDatabaseChangeLogTableName());
       database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX+database.getDatabaseChangeLogLockTableName());
-  
+      database.getLiquibaseSchemaName();
       Liquibase liquibase = new Liquibase("META-INF/liquibase/activiti-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
       liquibase.update("activiti");
       return liquibase;
@@ -210,7 +239,7 @@ public class DatabaseConfiguration {
     } catch (Exception e) {
       throw new ActivitiException("Error creating liquibase database");
     }
-  }
+  }*/
 
   @Bean
   public JdbcTemplate jdbcTemplate() {

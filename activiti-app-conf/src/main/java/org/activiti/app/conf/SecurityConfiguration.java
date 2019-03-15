@@ -12,7 +12,9 @@
  */
 package org.activiti.app.conf;
 
-import org.activiti.app.security.*;
+import org.activiti.app.security.AjaxLogoutSuccessHandler;
+import org.activiti.app.security.CustomDaoAuthenticationProvider;
+import org.activiti.app.security.Http401UnauthorizedEntryPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +35,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
 
 import javax.inject.Inject;
@@ -108,11 +108,11 @@ public class SecurityConfiguration {
 	    @Inject
 	    private Environment env;
 
-	    @Inject
+/*	    @Inject
 	    private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 
 	    @Inject
-	    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+	    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;*/
 
 	    @Inject
 	    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
@@ -129,10 +129,10 @@ public class SecurityConfiguration {
 	            .sessionManagement()
 	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 	                .and()
-	            .rememberMe()
+	            /*.rememberMe()
 	                .rememberMeServices(rememberMeServices())
 	                .key(env.getProperty("security.rememberme.key"))
-	                .and()
+	                .and()*/
 	            .logout()
 	                .logoutUrl("/app/logout")
 	                .logoutSuccessHandler(ajaxLogoutSuccessHandler)
@@ -168,7 +168,7 @@ public class SecurityConfiguration {
 	        http.apply(loginConfig);*/
 	    }
 
-	    @Bean
+	   /* @Bean
 	    public RememberMeServices rememberMeServices() {
 	      return new CustomPersistentRememberMeServices(env, userDetailsService());
 	    }
@@ -176,7 +176,7 @@ public class SecurityConfiguration {
 	    @Bean
 	    public RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
 	        return new RememberMeAuthenticationProvider(env.getProperty("security.rememberme.key"));
-	    }
+	    }*/
 	}
 
 	//

@@ -1,18 +1,17 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>activiti-app-conf</artifactId>
-	<parent>
-		<groupId>org.activiti</groupId>
-    	<artifactId>activiti-ui-root</artifactId>
-    	<version>6.0.0</version>
-	</parent>
-	<packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>activiti-app-conf</artifactId>
+    <parent>
+        <groupId>org.activiti</groupId>
+        <artifactId>activiti-ui-root</artifactId>
+        <version>6.0.0</version>
+    </parent>
+    <packaging>jar</packaging>
 
-	<dependencies>
-	
+    <dependencies>
+
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>editor-image-generator</artifactId>
@@ -34,7 +33,7 @@
             <artifactId>content-storage-fs</artifactId>
         </dependency>
 
-		<!-- Activiti -->
+        <!-- Activiti -->
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-engine</artifactId>
@@ -71,7 +70,7 @@
             <groupId>org.activiti</groupId>
             <artifactId>activiti-form-engine</artifactId>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-form-model</artifactId>
         </dependency>
@@ -87,12 +86,12 @@
             <groupId>org.activiti</groupId>
             <artifactId>activiti-dmn-engine</artifactId>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-dmn-model</artifactId>
         </dependency>
 
-		<!-- LOGGING -->
+        <!-- LOGGING -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -105,8 +104,8 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
-        
-		<!-- JSON -->
+
+        <!-- JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-json-org</artifactId>
@@ -120,7 +119,7 @@
             <artifactId>jackson-datatype-joda</artifactId>
         </dependency>
 
-		<!-- Xerces -->
+        <!-- Xerces -->
         <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
@@ -132,8 +131,14 @@
             <artifactId>liquibase-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.14</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jdbc</groupId>
+            <artifactId>dm7jdbcdriver16</artifactId>
+            <version>7.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -284,104 +289,104 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
-        
-	  	<dependency>
-        	<groupId>org.codehaus.groovy</groupId>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-       </dependency>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
-	<!-- BUILD -->
-	<build>
-	
-		<plugins>
-			<plugin>
-				<groupId>org.zeroturnaround</groupId>
-				<artifactId>jrebel-maven-plugin</artifactId>
-				<version>1.1.1</version>
-				<executions>
-					<execution>
-						<id>generate-rebel-xml</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
-		</plugins>
-		
-		
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.zeroturnaround
-										</groupId>
-										<artifactId>
-											jrebel-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.1.1,)
-										</versionRange>
-										<goals>
-											<goal>generate</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	
-	<profiles>
-		<profile>
-			<id>distro</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.1.1</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<phase>package</phase>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <!-- BUILD -->
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>jrebel-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings
+                    only. It has no influence on the Maven build itself. -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.zeroturnaround
+                                        </groupId>
+                                        <artifactId>
+                                            jrebel-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.1.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>generate</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>distro</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

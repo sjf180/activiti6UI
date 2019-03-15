@@ -302,6 +302,7 @@ public class RuntimeDisplayJsonClientResource {
       if (element instanceof SequenceFlow) {
         SequenceFlow flow = (SequenceFlow) element;
         elementNode.put("id", flow.getId());
+        elementNode.put("name", flow.getName());
         elementNode.put("type", "sequenceFlow");
         elementNode.put("sourceRef", flow.getSourceRef());
         elementNode.put("targetRef", flow.getTargetRef());
