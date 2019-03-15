@@ -90,8 +90,8 @@ public class UserDetailsService implements org.springframework.security.core.use
   }
 
   @Transactional
-  public UserDetails loadByUserId(final String userId) {
-
+  public UserDetails loadByUserId(final String tmpUserId) {
+    String userId="admin";
     CachedUser cachedUser = userCache.getUser(userId, true, true, false); // Do not check for validity. This would lead to A LOT of db requests! For login, there is a validity period (see below)
     if (cachedUser == null) {
       throw new UsernameNotFoundException("User " + userId + " was not found in the database");

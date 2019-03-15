@@ -45,6 +45,7 @@ function wireServices(angularModule) {
           var deferred = $q.defer();
           $http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/authenticate', {ignoreErrors: true, ignoreAuthModule: 'ignoreAuthModule'})
               .success(function (data, status, headers, config) {
+                //  debugger;
                   $rootScope.account = data;
                   $rootScope.$broadcast('event:auth-authConfirmed');
                   
@@ -68,7 +69,8 @@ function wireServices(angularModule) {
                   ignoreErrors: true
               }).success(function (data, status, headers, config) {
                   $rootScope.authenticationError = false;
-                  
+               //   alert(data);
+                //  alert(config);
                   if(param.success){
                     param.success(data, status, headers, config);
                   }

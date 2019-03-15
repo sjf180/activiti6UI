@@ -12,7 +12,10 @@
  */
 package org.activiti.app.security;
 
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.User;
+import org.activiti.engine.impl.persistence.entity.UserEntityImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +26,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public final class SecurityUtils {
 
   private static User assumeUser;
+  @Autowired
+  protected static IdentityService identityService;
 
   private SecurityUtils() {
   }
@@ -46,12 +51,18 @@ public final class SecurityUtils {
       return assumeUser;
     }
 
-    User user = null;
+    User user= new UserEntityImpl();
+    user.setId("admin");
+    user.setFirstName("admin");
+    assumeUser(user);
+    return user;
+   // return identityService.createUserQuery().userId("admin").singleResult();
+   /* User user = null;
     ActivitiAppUser appUser = getCurrentActivitiAppUser();
     if (appUser != null) {
       user = appUser.getUserObject();
     }
-    return user;
+    return user;*/
   }
 
   public static ActivitiAppUser getCurrentActivitiAppUser() {

@@ -42,7 +42,7 @@ wireServices(activitiModeler);
 activitiModeler
   // Initialize routes
   .config(['$provide', '$routeProvider', '$selectProvider', '$translateProvider', function ($provide, $routeProvider, $selectProvider, $translateProvider) {
-
+     // debugger;
     var appName = 'editor';
     $provide.value('appName', appName);
     var appResourceRoot = ACTIVITI.CONFIG.webContextRoot + (ACTIVITI.CONFIG.webContextRoot ? '/' + appName + '/' : '');
@@ -53,10 +53,12 @@ activitiModeler
       angular.extend($selectProvider.defaults, {
           caretHtml: '&nbsp;<i class="icon icon-caret-down"></i>'
       });
+      var authRouteResolver = ['$rootScope', function($rootScope) {
+          $rootScope.authenticationChecked = true;
+      }];
 
-
-      var authRouteResolver = ['$rootScope', 'AuthenticationSharedService', function($rootScope, AuthenticationSharedService) {
-
+      /*var authRouteResolver = ['$rootScope', 'AuthenticationSharedService', function($rootScope, AuthenticationSharedService) {
+debugger;
         if(!$rootScope.authenticated) {
           // Return auth-promise. On success, the promise resolves and user is assumed authenticated from now on. If
           // promise is rejected, route will not be followed (no unneeded HTTP-calls will be done, which case a 401 in the end, anyway)
@@ -68,7 +70,7 @@ activitiModeler
           $rootScope.authenticated = true;
           return true;
         }
-      }];
+      }];*/
 
         $routeProvider
             .when('/login', {
@@ -388,7 +390,7 @@ activitiModeler
   ])
   .run(['$rootScope', '$location', 'AuthenticationSharedService', 'Account', '$translate', '$window', '$modal',
         function($rootScope, $location, AuthenticationSharedService, Account, $translate, $window , $modal) {
-      
+     // debugger;
             var proposedLanguage = $translate.proposedLanguage();
             if (proposedLanguage !== 'de' && proposedLanguage !== 'en' && proposedLanguage !== 'es' && proposedLanguage !== 'fr'
                 && proposedLanguage !== 'it' && proposedLanguage !== 'ja') {
@@ -407,12 +409,12 @@ activitiModeler
                 var index = absUrl.indexOf(fixedUrlPart);
                 var newUrl;
                 if (data !== null && data !== undefined && data.isFromLogout !== undefined && data.isFromLogout === true) {
-                    newUrl = absUrl.substring(0, index) + '/#login';
+                    newUrl = absUrl.substring(0, index) + '/#/processes';
                     if (ACTIVITI.CONFIG.loginUrl) {
                         newUrl = ACTIVITI.CONFIG.loginUrl.replace("{url}", $location.absUrl());
                     }
                 } else {
-                    newUrl = absUrl.substring(0, index) + '/#login?redirectUrl=' + encodeURIComponent($location.absUrl());
+                    newUrl = absUrl.substring(0, index) + '/#/processes?redirectUrl=' + encodeURIComponent($location.absUrl());
                     if (ACTIVITI.CONFIG.loginUrl) {
                         newUrl = ACTIVITI.CONFIG.loginUrl.replace("{url}", encodeURIComponent($location.absUrl()));
                     }
@@ -464,6 +466,7 @@ activitiModeler
 
             $rootScope.backToLanding = function() {
                 var baseUrl = $location.absUrl();
+
                 var index = baseUrl.indexOf(fixedUrlPart);
                 if (index >= 0) {
                     baseUrl = baseUrl.substring(0, index);

@@ -9,9 +9,10 @@
 var ACTIVITI = ACTIVITI || {};
 
 ACTIVITI.CONFIG = {
-	'onPremise' : true,
+	'onPremise' : false,
 	'contextRoot' : '/activiti-app',
-	'webContextRoot' : '/activiti-app'
+	'webContextRoot' : '/activiti-app'/*,
+	'appDefaultRoute':'/activiti-app/editor'*/
 };
 /*
  * Copyright 2005-2015 Alfresco Software, Ltd. All rights reserved.

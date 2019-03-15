@@ -156,7 +156,7 @@ activitiApp.factory('AuthenticationSharedService', ['$rootScope', '$http', 'auth
           var deferred = $q.defer();
           $http.get(ACTIVITI.CONFIG.contextRoot + '/app/rest/authenticate', {ignoreErrors: true, ignoreAuthModule: 'ignoreAuthModule'})
               .success(function (data, status, headers, config) {
-              
+              //debugger;
                   var authUrl = ACTIVITI.CONFIG.contextRoot + '/app/rest/account';
                   if (ACTIVITI.CONFIG.integrationProfile) {
                       authUrl += '?includeApps=true';

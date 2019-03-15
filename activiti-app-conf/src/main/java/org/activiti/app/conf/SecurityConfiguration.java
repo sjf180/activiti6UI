@@ -13,7 +13,6 @@
 package org.activiti.app.conf;
 
 import org.activiti.app.security.*;
-import org.activiti.app.web.CustomFormLoginConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,10 +154,10 @@ public class SecurityConfiguration {
 	                .antMatchers("/app/rest/idm/email-actions/*").permitAll()
 	                .antMatchers("/app/rest/idm/signups").permitAll()
 	                .antMatchers("/app/rest/idm/passwords").permitAll()
-	                .antMatchers("/app/**").authenticated();
+	                .antMatchers("/app/**").permitAll();
 
 	        // Custom login form configurer to allow for non-standard HTTP-methods (eg. LOCK)
-	        CustomFormLoginConfig<HttpSecurity> loginConfig = new CustomFormLoginConfig<HttpSecurity>();
+	        /*CustomFormLoginConfig<HttpSecurity> loginConfig = new CustomFormLoginConfig<HttpSecurity>();
 	        loginConfig.loginProcessingUrl("/app/authentication")
 	            .successHandler(ajaxAuthenticationSuccessHandler)
 	            .failureHandler(ajaxAuthenticationFailureHandler)
@@ -166,7 +165,7 @@ public class SecurityConfiguration {
 	            .passwordParameter("j_password")
 	            .permitAll();
 	        
-	        http.apply(loginConfig);
+	        http.apply(loginConfig);*/
 	    }
 
 	    @Bean
