@@ -86,10 +86,10 @@
             "NOTES": "注释"
         },
         "FILTER": {
-            "CREATED-DESC": "后到前",
-            "CREATED-ASC": "前到后",
-            "DUE-DESC": "后到前",
-            "DUE-ASC": "前到后",
+            "CREATED-DESC": "后到先",
+            "CREATED-ASC": "先到后",
+            "DUE-DESC": "后到先",
+            "DUE-ASC": "先到后",
             "TEXT": "过滤",
             "TEXT-PLACEHOLDER": "按任务名称搜索",
             "TEXT-SUMMARY": "过滤: {{text}}",
@@ -211,8 +211,8 @@
         "FILTER": {
             "CREATED-DESC": "新到旧",
             "CREATED-ASC": "旧到新",
-            "ENDED-DESC": "后到前",
-            "ENDED-ASC": "前到后",
+            "ENDED-DESC": "后到先",
+            "ENDED-ASC": "先到后",
             "STATE-SUMMARY": "显示{{state.title | translate}}流程",
             "STATE": "流程状态",
             "STATE-RUNNING": "运行中",

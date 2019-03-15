@@ -24,7 +24,7 @@
         },
         "ACTION": {
             "LOGOUT": "退出",
-            "RETURN-TO-LIST": "显示所有定义",
+            "RETURN-TO-LIST": "显示所有流程",
             "CANCEL": "取消",
             "CLOSE": "关闭",
             "EDIT": "编辑",
@@ -114,8 +114,8 @@
         },
 
         "SORT": {
-            "MODIFIED-ASC": "后到前",
-            "MODIFIED-DESC": "前到后",
+            "MODIFIED-ASC": "后到先",
+            "MODIFIED-DESC": "先到后",
             "NAME-ASC": "名称, A-Z",
             "NAME-DESC": "名称, Z-A"
         }
@@ -142,8 +142,8 @@
         },
 
         "SORT": {
-          "MODIFIED-ASC": "后到前",
-          "MODIFIED-DESC": "前到后",
+          "MODIFIED-ASC": "后到先",
+          "MODIFIED-DESC": "先到后",
           "NAME-ASC": "名称, A-Z",
           "NAME-DESC": "名称, Z-A"
         }
@@ -171,8 +171,8 @@
         },
 
         "SORT": {
-          "MODIFIED-ASC": "后到前",
-          "MODIFIED-DESC": "前到后",
+          "MODIFIED-ASC": "后到先",
+          "MODIFIED-DESC": "先到后",
           "NAME-ASC": "名称, A-Z",
           "NAME-DESC": "名称, Z-A"
         }
@@ -214,8 +214,8 @@
         },
 
         "SORT": {
-          "MODIFIED-ASC": "后到前",
-          "MODIFIED-DESC": "前到后",
+          "MODIFIED-ASC": "后到先",
+          "MODIFIED-DESC": "先到后",
           "NAME-ASC": "名称, A-Z",
           "NAME-DESC": "名称, Z-A"
         }
