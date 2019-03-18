@@ -26,15 +26,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.awt.font.FontRenderContext;
+import java.awt.font.LineBreakMeasurer;
+import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
+import java.text.AttributedCharacterIterator;
+import java.text.AttributedString;
 import java.util.*;
 
 @Component
 public class BpmnDisplayJsonConverter {
-    
+
     private final Logger log = LoggerFactory.getLogger(BpmnDisplayJsonConverter.class);
-    
+
     protected BpmnJsonConverter bpmnJsonConverter = new BpmnJsonConverter();
-    
+
     protected ObjectMapper objectMapper = new ObjectMapper();
     protected List<String> eventElementTypes = new ArrayList<String>();
     protected Map<String, InfoMapper> propertyMappers = new HashMap<String, InfoMapper>();
@@ -67,7 +73,7 @@ public class BpmnDisplayJsonConverter {
                 log.error("Error transforming json to pojo " + processModel.getId(), e);
             }
         }
-        
+
         if (pojoModel == null || pojoModel.getLocationMap().isEmpty()) return;
 
         ArrayNode elementArray = objectMapper.createArrayNode();
@@ -114,7 +120,7 @@ public class BpmnDisplayJsonConverter {
                 firstElement = false;
             }
             displayNode.put("pools", poolArray);
-            
+
         } else {
             // in initialize with fake x and y to make sure the minimal
             // values are set
@@ -129,15 +135,44 @@ public class BpmnDisplayJsonConverter {
 
         displayNode.put("elements", elementArray);
         displayNode.put("flows", flowArray);
-        
+
         displayNode.put("diagramBeginX", diagramInfo.getX());
         displayNode.put("diagramBeginY", diagramInfo.getY());
         displayNode.put("diagramWidth", diagramInfo.getWidth());
         displayNode.put("diagramHeight", diagramInfo.getHeight());
     }
 
-    protected void processElements(Collection<FlowElement> elementList, BpmnModel model, ArrayNode elementArray, 
-            ArrayNode flowArray, GraphicInfo diagramInfo) {
+    private ObjectNode getFlowLabelXY(String text,double tX,int textY, boolean centered) {
+        float interline = 1.0f;
+        int wrapWidth = 100;
+
+        ObjectNode jsonObject = objectMapper.createObjectNode();
+        // TODO: use drawMultilineText()
+        AttributedString as = new AttributedString(text);
+        AttributedCharacterIterator aci = as.getIterator();
+        FontRenderContext frc = new FontRenderContext(null, true, false);
+        LineBreakMeasurer lbm = new LineBreakMeasurer(aci, frc);
+
+        while (lbm.getPosition() < text.length()) {
+            TextLayout tl = lbm.nextLayout(wrapWidth);
+            textY += tl.getAscent();
+            Rectangle2D bb = tl.getBounds();
+
+            if (centered) {
+                tX += (int) (100 - bb.getWidth() / 2);
+            }
+
+            jsonObject.put("x", tX);
+            jsonObject.put("y", textY);
+
+            textY += tl.getDescent() + tl.getLeading() + (interline - 1.0f) * tl.getAscent();
+        }
+
+        return jsonObject;
+    }
+
+    protected void processElements(Collection<FlowElement> elementList, BpmnModel model, ArrayNode elementArray,
+                                   ArrayNode flowArray, GraphicInfo diagramInfo) {
 
         for (FlowElement element : elementList) {
             if (element instanceof SequenceFlow) {
@@ -158,12 +193,23 @@ public class BpmnDisplayJsonConverter {
                         fillDiagramInfo(graphicInfo, diagramInfo);
                     }
                     elementNode.put("waypoints", waypointArray);
-                    
+
+                    /*try {
+                        Integer.parseInt(waypointArray/2);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }*/
+                    int y=waypointArray.get(0).get("y").asInt();
+                    if(waypointArray.size()>2){
+                        double tmp=(Double.parseDouble(waypointArray.size()+"")/2)-0.5;
+                        y=waypointArray.get((int)tmp).get("y").asInt();
+                    }
+                    elementNode.put("labelXY", getFlowLabelXY(flow.getName(),waypointArray.get(0).get("x").asDouble(),y, true));
                     String className = element.getClass().getSimpleName();
                     if (propertyMappers.containsKey(className)) {
                         elementNode.put("properties", propertyMappers.get(className).map(element));
                     }
-                    
+
                     flowArray.add(elementNode);
                 }
 
@@ -187,10 +233,10 @@ public class BpmnDisplayJsonConverter {
                     ServiceTask serviceTask = (ServiceTask) element;
                     if (ServiceTask.MAIL_TASK.equals(serviceTask.getType())) {
                         elementNode.put("taskType", "mail");
-                        
+
                     } else if ("camel".equals(serviceTask.getType())) {
                         elementNode.put("taskType", "camel");
-                    
+
                     } else if ("mule".equals(serviceTask.getType())) {
                         elementNode.put("taskType", "mule");
                     }
@@ -210,10 +256,10 @@ public class BpmnDisplayJsonConverter {
             }
         }
     }
-    
+
     protected void processArtifacts(Collection<Artifact> artifactList,
-            BpmnModel model, ArrayNode elementArray, ArrayNode flowArray,
-            GraphicInfo diagramInfo) {
+                                    BpmnModel model, ArrayNode elementArray, ArrayNode flowArray,
+                                    GraphicInfo diagramInfo) {
 
         for (Artifact artifact : artifactList) {
 
@@ -250,7 +296,7 @@ public class BpmnDisplayJsonConverter {
             }
         }
     }
-    
+
     protected void fillWaypoints(String id, BpmnModel model, ObjectNode elementNode, GraphicInfo diagramInfo) {
         List<GraphicInfo> flowInfo = model.getFlowLocationGraphicInfo(id);
         ArrayNode waypointArray = objectMapper.createArrayNode();
@@ -315,8 +361,8 @@ public class BpmnDisplayJsonConverter {
     }
 
     protected void commonFillGraphicInfo(ObjectNode elementNode, double x,
-            double y, double width, double height, boolean includeWidthAndHeight) {
-        
+                                         double y, double width, double height, boolean includeWidthAndHeight) {
+
         elementNode.put("x", x);
         elementNode.put("y", y);
         if (includeWidthAndHeight) {
@@ -324,7 +370,7 @@ public class BpmnDisplayJsonConverter {
             elementNode.put("height", height);
         }
     }
-    
+
     protected void fillDiagramInfo(GraphicInfo graphicInfo, GraphicInfo diagramInfo) {
         double rightX = graphicInfo.getX() + graphicInfo.getWidth();
         double bottomY = graphicInfo.getY() + graphicInfo.getHeight();

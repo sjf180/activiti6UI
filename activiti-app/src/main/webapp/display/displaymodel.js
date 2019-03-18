@@ -241,7 +241,7 @@ var request = jQuery.ajax({
 });
 
 request.success(function(data, textStatus, jqXHR) {
-
+debugger;
     if ((!data.elements || data.elements.length == 0) && (!data.pools || data.pools.length == 0)) return;
 
     INITIAL_CANVAS_WIDTH = data.diagramWidth;

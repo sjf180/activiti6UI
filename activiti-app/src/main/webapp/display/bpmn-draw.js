@@ -643,7 +643,7 @@ function _drawTextAnnotation(element)
 }
  
 function _drawFlow(flow){
-	
+
 	var polyline = new Polyline(flow.id, flow.waypoints, SEQUENCEFLOW_STROKE, paper);
 	
 	var strokeColor = _bpmnGetColor(flow, MAIN_STROKE_COLOR);
@@ -686,6 +686,10 @@ function _drawFlow(flow){
 	});
 	
 	_drawArrowHead(line);
+	if (flow.name) {
+		debugger;
+		this._drawMultilineText(flow.name, flow.labelXY.x, flow.labelXY.y, 0, 0, "start", "middle", 11);
+	}
 }
 
 function _drawAssociation(flow){

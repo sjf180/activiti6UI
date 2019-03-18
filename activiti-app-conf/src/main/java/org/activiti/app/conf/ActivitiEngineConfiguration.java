@@ -72,6 +72,11 @@ public class ActivitiEngineConfiguration {
     	processEngineConfiguration.setTransactionManager(transactionManager);
     	processEngineConfiguration.setAsyncExecutorActivate(true);
     	processEngineConfiguration.setAsyncExecutor(asyncExecutor());
+        processEngineConfiguration.setLabelFontName("宋体");
+        processEngineConfiguration.setActivityFontName("宋体");
+        processEngineConfiguration.setAnnotationFontName("宋体");
+        processEngineConfiguration.setDbIdentityUsed(false);
+
 
     	String emailHost = environment.getProperty("email.host");
     	if (StringUtils.isNotEmpty(emailHost)) {
@@ -110,6 +115,7 @@ public class ActivitiEngineConfiguration {
         formEngineConfiguration.setDatabaseCatalog(environment.getProperty("datasource.username"));
     	formEngineConfiguration.setDataSource(dataSource);
         formEngineConfiguration.setDatabaseSchemaUpdate(environment.getProperty("database.schema.update"));
+
     	
     	FormEngineConfigurator formEngineConfigurator = new FormEngineConfigurator();
     	formEngineConfigurator.setFormEngineConfiguration(formEngineConfiguration);
@@ -121,7 +127,7 @@ public class ActivitiEngineConfiguration {
         dmnEngineConfiguration.setDatabaseCatalog(environment.getProperty("datasource.username"));
     	dmnEngineConfiguration.setDataSource(dataSource);
         dmnEngineConfiguration.setDatabaseSchemaUpdate(environment.getProperty("database.schema.update"));
-      
+
       DmnEngineConfigurator dmnEngineConfigurator = new DmnEngineConfigurator();
       dmnEngineConfigurator.setDmnEngineConfiguration(dmnEngineConfiguration);
       processEngineConfiguration.addConfigurator(dmnEngineConfigurator);
