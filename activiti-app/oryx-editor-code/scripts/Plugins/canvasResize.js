@@ -35,7 +35,7 @@ ORYX.Plugins.CanvasResize = Clazz.extend({
     },
     
     resize: function( position, shrink ){
-    	
+
     	resizeCanvas = function(position, extentionSize, facade) {
         	var canvas 		= facade.getCanvas();
     		var b 			= canvas.bounds;
@@ -77,6 +77,7 @@ ORYX.Plugins.CanvasResize = Clazz.extend({
 				this.facade = facade;
 			},			
 			execute: function(){
+
 				resizeCanvas(this.position, this.extentionSize, this.facade);
 			},
 			rollback: function(){

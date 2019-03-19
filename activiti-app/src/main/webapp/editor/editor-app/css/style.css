@@ -118,7 +118,7 @@
 	margin: 0px 0px 5px 15px;
 	background-color: #ffffff;
 	font-family: Arial, Regular;
-	font-size: 17px;
+	font-size: 13px;
 	color: #323437;
 }
 
@@ -330,11 +330,14 @@ div.propertySection {
 	width: 15%;
 	padding: 0;
 	overflow: auto;
+
+
 }
 .paletteHelpWrapper.collapsed {
 	width: 1%;
 	padding: 0;
 	overflow: hidden;
+
 }
 .stencils.collapsed {
 	padding: 0;

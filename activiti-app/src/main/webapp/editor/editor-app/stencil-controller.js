@@ -16,10 +16,9 @@
 angular.module('activitiModeler')
     .controller('StencilController', ['$rootScope', '$scope', '$http', '$modal', '$timeout', '$window',
         function ($rootScope, $scope, $http, $modal, $timeout, $window) {
-
             // Property window toggle state
             $scope.propertyWindowState = {'collapsed': true};
-            $scope.toolsWindowState = {'collapsed': true};
+            $scope.toolsWindowState = {'collapsed': false};
             // Add reference to global header-config
             $scope.headerConfig = KISBPM.HEADER_CONFIG;
 
