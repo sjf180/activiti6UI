@@ -36,7 +36,7 @@ function _drawPool(pool)
 	{
 		var poolName = paper.text(pool.x + 14, pool.y + (pool.height / 2), pool.name).attr({
 	        "text-anchor" : "middle",
-	        "font-family" : "Arial",
+	        "font-family" : "宋体",
 	        "font-size" : "12",
 	        "fill" : "#000000"
 	  	});
@@ -67,7 +67,7 @@ function _drawLane(lane)
 	{
 		var laneName = paper.text(lane.x + 10, lane.y + (lane.height / 2), lane.name).attr({
 	        "text-anchor" : "middle",
-	        "font-family" : "Arial",
+	        "font-family" : "宋体",
 	        "font-size" : "12",
 	        "fill" : "#000000"
 	  	});
@@ -561,6 +561,7 @@ function _drawThrowEvent(element)
 
 function _drawMultilineText(text, x, y, boxWidth, boxHeight, horizontalAnchor, verticalAnchor, fontSize) 
 {
+	debugger;
 	if (!text || text == "")
 	{
 		return;
@@ -582,7 +583,7 @@ function _drawMultilineText(text, x, y, boxWidth, boxHeight, horizontalAnchor, v
     
  	var t = paper.text(textBoxX + TEXT_PADDING, textBoxY + TEXT_PADDING).attr({
         "text-anchor" : horizontalAnchor,
-        "font-family" : "Arial",
+        "font-family" : "宋体",
         "font-size" : fontSize,
         "fill" : "#373e48"
   	});
@@ -688,7 +689,7 @@ function _drawFlow(flow){
 	_drawArrowHead(line);
 	if (flow.name) {
 		debugger;
-		this._drawMultilineText(flow.name, flow.labelXY.x, flow.labelXY.y, 0, 0, "start", "middle", 11);
+		this._drawMultilineText(flow.name, flow.labelXY.x, flow.labelXY.y, -10, -10, "middle", "middle", 11);
 	}
 }
 

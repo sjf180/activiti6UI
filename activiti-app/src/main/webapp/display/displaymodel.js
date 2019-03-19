@@ -30,7 +30,7 @@ var TEXT_PADDING = 3;
 var ARROW_WIDTH = 4;
 var MARKER_WIDTH = 12;
 
-var TASK_FONT = {font: "11px Arial", opacity: 1, fill: Raphael.rgb(0, 0, 0)};
+var TASK_FONT = {font: "11px 宋体", opacity: 1, fill: Raphael.rgb(0, 0, 0)};
 
 // icons
 var ICON_SIZE = 16;

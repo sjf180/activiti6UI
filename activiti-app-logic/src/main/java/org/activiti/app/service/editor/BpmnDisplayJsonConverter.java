@@ -26,12 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineBreakMeasurer;
-import java.awt.font.TextLayout;
-import java.awt.geom.Rectangle2D;
-import java.text.AttributedCharacterIterator;
-import java.text.AttributedString;
 import java.util.*;
 
 @Component
@@ -142,35 +136,6 @@ public class BpmnDisplayJsonConverter {
         displayNode.put("diagramHeight", diagramInfo.getHeight());
     }
 
-    private ObjectNode getFlowLabelXY(String text,double tX,int textY, boolean centered) {
-        float interline = 1.0f;
-        int wrapWidth = 100;
-
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-        // TODO: use drawMultilineText()
-        AttributedString as = new AttributedString(text);
-        AttributedCharacterIterator aci = as.getIterator();
-        FontRenderContext frc = new FontRenderContext(null, true, false);
-        LineBreakMeasurer lbm = new LineBreakMeasurer(aci, frc);
-
-        while (lbm.getPosition() < text.length()) {
-            TextLayout tl = lbm.nextLayout(wrapWidth);
-            textY += tl.getAscent();
-            Rectangle2D bb = tl.getBounds();
-
-            if (centered) {
-                tX += (int) (100 - bb.getWidth() / 2);
-            }
-
-            jsonObject.put("x", tX);
-            jsonObject.put("y", textY);
-
-            textY += tl.getDescent() + tl.getLeading() + (interline - 1.0f) * tl.getAscent();
-        }
-
-        return jsonObject;
-    }
-
     protected void processElements(Collection<FlowElement> elementList, BpmnModel model, ArrayNode elementArray,
                                    ArrayNode flowArray, GraphicInfo diagramInfo) {
 
@@ -194,17 +159,26 @@ public class BpmnDisplayJsonConverter {
                     }
                     elementNode.put("waypoints", waypointArray);
 
-                    /*try {
-                        Integer.parseInt(waypointArray/2);
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }*/
-                    int y=waypointArray.get(0).get("y").asInt();
-                    if(waypointArray.size()>2){
-                        double tmp=(Double.parseDouble(waypointArray.size()+"")/2)-0.5;
-                        y=waypointArray.get((int)tmp).get("y").asInt();
+
+                    if (flow.getName() != null && !"".equals(flow.getName())) {
+                        //流向线名称不为空时,计算显示位置
+                        double x = 0d;
+                        int y = 0;
+                        try {
+                            int tmpSize = Integer.parseInt((waypointArray.size() / 2) + "");
+                            x = Math.abs((waypointArray.get(tmpSize).get("x").asDouble() + waypointArray.get(tmpSize - 1).get("x").asDouble()) / 2);
+                            y = Math.abs((waypointArray.get(tmpSize).get("y").asInt() + waypointArray.get(tmpSize - 1).get("y").asInt()) / 2);
+                        } catch (NumberFormatException e) {
+                            double tmpSize = (Double.parseDouble(waypointArray.size() + "") / 2) - 0.5;
+                            int xySize = (int) tmpSize;
+                            x = waypointArray.get(xySize).get("x").asDouble();
+                            y = waypointArray.get(xySize).get("y").asInt();
+                        }
+                        ObjectNode lineLabelXY = objectMapper.createObjectNode();
+                        lineLabelXY.put("x", x);
+                        lineLabelXY.put("y", y);
+                        elementNode.put("labelXY", lineLabelXY);
                     }
-                    elementNode.put("labelXY", getFlowLabelXY(flow.getName(),waypointArray.get(0).get("x").asDouble(),y, true));
                     String className = element.getClass().getSimpleName();
                     if (propertyMappers.containsKey(className)) {
                         elementNode.put("properties", propertyMappers.get(className).map(element));
