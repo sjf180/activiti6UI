@@ -19,6 +19,11 @@ angular.module('activitiModeler')
             // Property window toggle state
             $scope.propertyWindowState = {'collapsed': true};
             $scope.toolsWindowState = {'collapsed': false};
+            debugger;
+            if (!$scope.toolsWindowState.collapsed) {
+                jQuery("#paletteHelpWrapper").removeClass('paletteHelpWrapper');
+                jQuery("#paletteHelpWrapper").addClass('paletteHelpWrapper_tmp');
+            }
             // Add reference to global header-config
             $scope.headerConfig = KISBPM.HEADER_CONFIG;
 
@@ -29,8 +34,16 @@ angular.module('activitiModeler')
                 });
             };
             $scope.toolsWindowState.toggle = function () {
+                if ($scope.toolsWindowState.collapsed) {
+                    jQuery("#paletteHelpWrapper").removeClass('paletteHelpWrapper');
+                    jQuery("#paletteHelpWrapper").addClass('paletteHelpWrapper_tmp');
+                }else{
+                    jQuery("#paletteHelpWrapper").removeClass('paletteHelpWrapper_tmp');
+                    jQuery("#paletteHelpWrapper").addClass('paletteHelpWrapper');
+                }
                 $scope.toolsWindowState.collapsed = !$scope.toolsWindowState.collapsed;
                 $timeout(function () {
+
                     jQuery(window).trigger('resize');
                 });
             };
