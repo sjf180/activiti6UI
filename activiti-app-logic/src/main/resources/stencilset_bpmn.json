@@ -128,9 +128,9 @@
     "properties" : [ {
       "id" : "usertaskassignment",
       "type" : "Complex",
-      "title" : "任务派遣",
+      "title" : "任务分配",
       "value" : "",
-      "description" : "人工任务的派遣的定义",
+      "description" : "人工任务的分配的定义",
       "popular" : true
     } ]
   }, {
