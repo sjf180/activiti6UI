@@ -42,7 +42,6 @@ wireServices(activitiModeler);
 activitiModeler
   // Initialize routes
   .config(['$provide', '$routeProvider', '$selectProvider', '$translateProvider', function ($provide, $routeProvider, $selectProvider, $translateProvider) {
-     // debugger;
     var appName = 'editor';
     $provide.value('appName', appName);
     var appResourceRoot = ACTIVITI.CONFIG.webContextRoot + (ACTIVITI.CONFIG.webContextRoot ? '/' + appName + '/' : '');
@@ -58,7 +57,6 @@ activitiModeler
       }];
 
       /*var authRouteResolver = ['$rootScope', 'AuthenticationSharedService', function($rootScope, AuthenticationSharedService) {
-debugger;
         if(!$rootScope.authenticated) {
           // Return auth-promise. On success, the promise resolves and user is assumed authenticated from now on. If
           // promise is rejected, route will not be followed (no unneeded HTTP-calls will be done, which case a 401 in the end, anyway)
@@ -390,7 +388,6 @@ debugger;
   ])
   .run(['$rootScope', '$location', 'AuthenticationSharedService', 'Account', '$translate', '$window', '$modal',
         function($rootScope, $location, AuthenticationSharedService, Account, $translate, $window , $modal) {
-     // debugger;
             var proposedLanguage = $translate.proposedLanguage();
             if (proposedLanguage !== 'de' && proposedLanguage !== 'en' && proposedLanguage !== 'es' && proposedLanguage !== 'fr'
                 && proposedLanguage !== 'it' && proposedLanguage !== 'ja') {

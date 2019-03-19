@@ -62,7 +62,6 @@ activitiApp
            $rootScope.authenticationChecked = true;
        }];
     /*var authRouteResolver = ['$rootScope', 'AuthenticationSharedService', function($rootScope, AuthenticationSharedService) {
-debugger;
         if(!$rootScope.authenticated) {
           // Return auth-promise. On success, the promise resolves and user is assumed authenticated from now on. If
           // promise is rejected, route will not be followed (no unneeded HTTP-calls will be done, which case a 401 in the end, anyway)
@@ -365,7 +364,6 @@ debugger;
   ])
   .run(['$rootScope', '$location', '$window', 'AuthenticationSharedService', '$translate', 'appName', '$modal',
         function($rootScope, $location, $window, AuthenticationSharedService, $translate, appName , $modal) {
-          //  debugger;
           var fixedUrlPart = '/' + appName + '/';
 
           $rootScope.logout = function() {

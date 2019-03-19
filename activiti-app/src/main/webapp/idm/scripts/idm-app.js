@@ -32,7 +32,6 @@ var activitiApp = angular.module('activitiApp', [
 var activitiModule = activitiApp;
 
 activitiApp.config(['$provide', '$routeProvider', '$translateProvider', function ($provide, $routeProvider, $translateProvider) {
-   // debugger;
   var appName = 'idm';
   $provide.value('appName', appName);
   var appResourceRoot = ACTIVITI.CONFIG.webContextRoot + (ACTIVITI.CONFIG.webContextRoot ? '/' + appName + '/' : '');
@@ -105,7 +104,6 @@ activitiApp.config(['$provide', '$routeProvider', '$translateProvider', function
   }])
     .run(['$rootScope', '$location', '$window', 'AuthenticationSharedService', '$translate', 'appResourceRoot', '$modal',
         function($rootScope, $location, $window, AuthenticationSharedService, $translate, appResourceRoot, $modal) {
-//debugger;
           $rootScope.appResourceRoot = appResourceRoot;
 
             var fixedUrlPart = '/idm/';
@@ -146,7 +144,6 @@ activitiApp.config(['$provide', '$routeProvider', '$translateProvider', function
                 $rootScope.authenticationChecked = true;
 
                 if($location.path() == '' || $location.path()=='#' || $location.path() == '/login') {
-                    debugger;
                     $location.path('/');
                 }
 

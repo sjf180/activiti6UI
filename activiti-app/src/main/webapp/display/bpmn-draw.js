@@ -561,7 +561,6 @@ function _drawThrowEvent(element)
 
 function _drawMultilineText(text, x, y, boxWidth, boxHeight, horizontalAnchor, verticalAnchor, fontSize) 
 {
-	debugger;
 	if (!text || text == "")
 	{
 		return;
@@ -688,7 +687,6 @@ function _drawFlow(flow){
 	
 	_drawArrowHead(line);
 	if (flow.name) {
-		debugger;
 		this._drawMultilineText(flow.name, flow.labelXY.x, flow.labelXY.y, -10, -10, "middle", "middle", 11);
 	}
 }

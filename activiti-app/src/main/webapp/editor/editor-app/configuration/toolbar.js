@@ -162,7 +162,7 @@ KISBPM.TOOLBAR_CONFIG = {
     	    "action" : "KISBPM.TOOLBAR.ACTIONS.removeBendPoint",
     	    "id" : "remove-bendpoint-button",
     	    "disableInForm" : true
-    	},
+    	}/*,
         {
             "type" : "separator",
             "title": "",
@@ -174,7 +174,7 @@ KISBPM.TOOLBAR_CONFIG = {
             "title" : "TOOLBAR.ACTION.HELP",
             "cssClass" : "glyphicon glyphicon-question-sign",
             "action" : "KISBPM.TOOLBAR.ACTIONS.help"
-        }
+        }*/
     ],
     
     "secondaryItems" : []

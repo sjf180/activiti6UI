@@ -176,7 +176,7 @@ angular.module('activitiModeler')
             KISBPM.eventBus.dispatch(KISBPM.eventBus.EVENT_TYPE_EDITOR_READY, {type : KISBPM.eventBus.EVENT_TYPE_EDITOR_READY});
 
             // Show getting started if this is the first time (boolean true for use local storage)
-            ACTIVITI_EDITOR_TOUR.gettingStarted($scope, $translate, $q, true);
+          //  ACTIVITI_EDITOR_TOUR.gettingStarted($scope, $translate, $q, true);
 
         });
 

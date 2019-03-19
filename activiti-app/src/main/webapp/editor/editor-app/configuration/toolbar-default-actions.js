@@ -259,10 +259,10 @@ KISBPM.TOOLBAR = {
         sameSize: function (services) {
         	KISBPM.TOOLBAR.ACTIONS._getOryxArrangmentPlugin(services.$scope).alignShapes([ORYX.CONFIG.EDITOR_ALIGN_SIZE]);
         },
-
+/*
         help: function (services) {
             ACTIVITI_EDITOR_TOUR.gettingStarted(services.$scope, services.$translate, services.$q);
-        },
+        },*/
         
         /**
          * Helper method: fetches the Oryx View plugin from the provided scope,

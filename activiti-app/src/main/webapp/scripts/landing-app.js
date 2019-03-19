@@ -50,7 +50,6 @@ activitiApp
      * Route resolver for all authenticated routes
      */
     var authRouteResolver = ['$rootScope', 'AuthenticationSharedService', function($rootScope, AuthenticationSharedService) {
-        debugger;
         if(!$rootScope.authenticated) {
           // Return auth-promise. On success, the promise resolves and user is assumed authenticated from now on. If
           // promise is rejected, route will not be followed (no unneeded HTTP-calls will be done, which case a 401 in the end, anyway)
@@ -112,7 +111,6 @@ activitiApp
     }])
     .run(['$rootScope', '$timeout', '$translate', '$location', '$http', '$window', '$popover', 'appResourceRoot', 'RuntimeAppDefinitionService',
         function($rootScope, $timeout, $translate, $location, $http, $window, $popover, appResourceRoot, RuntimeAppDefinitionService) {
-        debugger;
             $rootScope.appResourceRoot = appResourceRoot;
             $window.location.href=($rootScope.appResourceRoot+'/editor');
             // Alerts
@@ -176,7 +174,6 @@ activitiApp
      }])
      .run(['$rootScope', '$location', '$window', 'AuthenticationSharedService', '$translate', '$modal',
         function($rootScope, $location, $window, AuthenticationSharedService, $translate, $modal) {
-            debugger;
         var proposedLanguage = $translate.proposedLanguage();
         if (proposedLanguage !== 'de' && proposedLanguage !== 'en' && proposedLanguage !== 'es' && proposedLanguage !== 'fr'
             && proposedLanguage !== 'it' && proposedLanguage !== 'ja') {

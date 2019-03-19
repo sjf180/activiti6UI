@@ -101,6 +101,7 @@
 }
 
 .stencils > div {
+	visibility: visible;
 	margin-top: 10px;
 }
 
@@ -321,11 +322,43 @@ div.propertySection {
 }
 
 .propertySection.collapsed {
-	max-height: 50px;
-	height: 50px;
+	max-height: 90px;
+	height: 90px;
 	overflow: hidden;
 }
-
+.paletteHelpWrapper{
+	width: 15%;
+	padding: 0;
+	overflow: auto;
+}
+.paletteHelpWrapper.collapsed {
+	width: 1%;
+	padding: 0;
+	overflow: hidden;
+}
+.stencils.collapsed {
+	padding: 0;
+	overflow: hidden;
+}
+.stencils.collapsed>div {
+	visibility: hidden;
+}
+.canvasHelpWrapper{
+	width: 85%;
+	padding: 0;
+}
+.canvasHelpWrapper.collapsed {
+	width: 99%;
+	padding: 0;
+}
+.propertiesHelpWrapper{
+	width: 85%;
+	padding: 0;
+}
+.propertiesHelpWrapper.collapsed {
+	width: 99%;
+	padding: 0;
+}
 .propertySection.collapsed .selected-item-title {
 	border: none;
 }
