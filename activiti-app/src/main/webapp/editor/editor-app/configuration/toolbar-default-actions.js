@@ -181,7 +181,7 @@ KISBPM.TOOLBAR = {
         addBendPoint: function (services) {
 
             // Show the tutorial the first time
-            ACTIVITI_EDITOR_TOUR.sequenceFlowBendpoint(services.$scope, services.$translate, services.$q, true);
+            //ACTIVITI_EDITOR_TOUR.sequenceFlowBendpoint(services.$scope, services.$translate, services.$q, true);
 
             var dockerPlugin = KISBPM.TOOLBAR.ACTIONS._getOryxDockerPlugin(services.$scope);
 
@@ -201,7 +201,7 @@ KISBPM.TOOLBAR = {
         removeBendPoint: function (services) {
 
             // Show the tutorial the first time
-            ACTIVITI_EDITOR_TOUR.sequenceFlowBendpoint(services.$scope, services.$translate, services.$q, true);
+            //ACTIVITI_EDITOR_TOUR.sequenceFlowBendpoint(services.$scope, services.$translate, services.$q, true);
 
             var dockerPlugin = KISBPM.TOOLBAR.ACTIONS._getOryxDockerPlugin(services.$scope);
 

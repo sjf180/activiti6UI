@@ -19,7 +19,7 @@ angular.module('activitiModeler')
             // Property window toggle state
             $scope.propertyWindowState = {'collapsed': true};
             $scope.toolsWindowState = {'collapsed': false};
-            debugger;
+           // debugger;
             if (!$scope.toolsWindowState.collapsed) {
                 jQuery("#paletteHelpWrapper").removeClass('paletteHelpWrapper');
                 jQuery("#paletteHelpWrapper").addClass('paletteHelpWrapper_tmp');

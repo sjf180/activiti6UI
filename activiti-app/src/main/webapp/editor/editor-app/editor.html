@@ -30,10 +30,11 @@
 	      <div id="paletteHelpWrapper" class="col-xs-2 paletteHelpWrapper" ng-class="{collapsed: toolsWindowState.collapsed}" >
 
 	      	<div class="stencils" id="paletteSection" ng-class="{collapsed: toolsWindowState.collapsed}">
-				<a ng-click="toolsWindowState.toggle()">
+				<a ng-click="toolsWindowState.toggle()" class="pull-right">
 					<i class="glyphicon" ng-class="{'glyphicon-chevron-right': toolsWindowState.collapsed, 'glyphicon-chevron-left': !toolsWindowState.collapsed}"></i>
 					<span ng-show="!toolsWindowState.collapsed">隐藏</span>
 				</a>
+				<hr style="border:1px dashed #d5d5d5;" width="100%"  size=1>
 			    <div ng-if="stencilItemGroups.length > 1">
                     <div ng-repeat="group in stencilItemGroups">
 
